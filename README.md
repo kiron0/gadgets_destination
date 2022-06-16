@@ -21,16 +21,16 @@
 
 ---
 
-### You can see me here.. [Click Me](https://gadgets-emporium.web.app)
+### You can see me here.. [Click Me](https://gadgets-destination.web.app)
 
 ## Installation
 
 ```bash
-git clone https://github.com/kiron0/gadgets_emporium.git
+git clone https://github.com/kiron0/gadgets_destination.git
 ```
 
 ```bash
-cd gadgets_emporium
+cd gadgets_destination
 ```
 
 ```bash
