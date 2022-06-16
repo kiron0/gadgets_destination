@@ -172,15 +172,9 @@ const Navbar = ({ handleThemeChange, theme }) => {
                       className="w-10 h-10 rounded-full border bg-base-300 grid place-items-center ring ring-primary ring-offset-base-100 ring-offset-2"
                     >
                       {auth?.currentUser?.photoURL ? (
-                        <img
-                          src={auth?.currentUser?.photoURL}
-                          alt={auth?.currentUser?.displayName?.slice(0, 1)}
-                        />
+                        <img src={auth?.currentUser?.photoURL} alt="avatar" />
                       ) : (
-                        <img
-                          src={image}
-                          alt={auth?.currentUser?.displayName?.slice(0, 1)}
-                        />
+                        <img src={image} alt="profile" />
                       )}
                     </div>
                   </label>
@@ -193,6 +187,9 @@ const Navbar = ({ handleThemeChange, theme }) => {
                         Profile
                         <span className="badge">New</span>
                       </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myOrders">My Orders</Link>
                     </li>
                     <li>
                       <Link to="/dashboard">Dashboard</Link>

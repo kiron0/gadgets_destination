@@ -21,7 +21,7 @@ const Blogs = () => {
   return (
     <div className="py-16">
       <section className="body-font">
-        <div className="breadcrumb text-center py-20 bg-base-300">
+        <div className="breadcrumb text-center py-24 bg-base-300">
           <h2 className="text-3xl">Blog Page</h2>
           <div className="text-md breadcrumbs ">
             <ul className="justify-center">

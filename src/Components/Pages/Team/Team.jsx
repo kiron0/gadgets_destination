@@ -33,8 +33,7 @@ const Team = () => {
     return <Loader />;
   }
 
-  const { _id, education, experience, skills, membersName, image } =
-    teamMembers[0];
+  const { _id, education, experience, skills, name, picture } = teamMembers[0];
 
   const details = (id) => {
     navigate(`/teamMembers/${_id}`);
@@ -61,10 +60,10 @@ const Team = () => {
                 <img
                   alt="team"
                   className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={image}
+                  src={picture.large}
                 />
                 <div className="flex-grow">
-                  <h2 className="title-font font-medium">{membersName}</h2>
+                  <h2 className="title-font font-medium">{name}</h2>
                   <p className="text-gray-500">{education}</p>
                 </div>
               </div>
