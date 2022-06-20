@@ -1,12 +1,8 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
 import Loader from "../Shared/Loader/Loader";
 import TItle from "../Shared/Title/Title";
-import client1 from "./assets/client-1.png";
-import client2 from "./assets/client-2.png";
-import client3 from "./assets/client-3.png";
 
 const Team = () => {
   useTitle("Team");
@@ -21,8 +17,6 @@ const Team = () => {
     return data;
   });
 
-  const navigate = useNavigate();
-
   if (
     isLoading ||
     teamMembers?.length === undefined ||
@@ -32,12 +26,6 @@ const Team = () => {
   ) {
     return <Loader />;
   }
-
-  const { _id, education, experience, skills, name, picture } = teamMembers[0];
-
-  const details = (id) => {
-    navigate(`/teamMembers/${_id}`);
-  };
 
   return (
     <div className="h-screen bg-base-100">
@@ -54,124 +42,25 @@ const Team = () => {
               haven't heard of them.
             </p>
           </div>
-          <div className="flex flex-wrap -m-2" onClick={details}>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={picture.large}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">{name}</h2>
-                  <p className="text-gray-500">{education}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mx-auto">
+            {teamMembers.map((team) => (
+              <div className="card w-96 bg-base-100 shadow-xl" key={team._id}>
+                <figure>
+                  <img src={team.picture.large} alt="Shoes" />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">{team.name}</h2>
+                  <div className="card-actions justify-end">
+                    <label
+                      for="my-modal-3"
+                      class="btn btn-primary text-white modal-button"
+                    >
+                      More Details
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client2}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Henry Letham</h2>
-                  <p className="text-gray-500">CTO</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client3}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Oskar Blinde</h2>
-                  <p className="text-gray-500">Founder</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client2}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">John Doe</h2>
-                  <p className="text-gray-500">DevOps</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client1}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Martin Eden</h2>
-                  <p className="text-gray-500">Software Engineer</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client2}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Boris Kitua</h2>
-                  <p className="text-gray-500">UX Researcher</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client3}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Atticus Finch</h2>
-                  <p className="text-gray-500">QA Engineer</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client2}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Alper Kamu</h2>
-                  <p className="text-gray-500">System</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center p-12 rounded-lg shadow-lg">
-                <img
-                  alt="team"
-                  className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src={client1}
-                />
-                <div className="flex-grow">
-                  <h2 className="title-font font-medium">Rodrigo Monchi</h2>
-                  <p className="text-gray-500">Product Manager</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
