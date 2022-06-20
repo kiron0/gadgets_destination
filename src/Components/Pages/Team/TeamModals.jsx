@@ -12,11 +12,10 @@ const TeamModals = ({ team }) => {
           >
             ✕
           </label>
-          <h3 class="text-lg font-bold">{team.name}</h3>
-          <p class="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+          <img className="flex mx-auto py-8" src={team.picture.large} alt="" />
+          <h3 class="text-lg font-bold text-center">{team.name}</h3>
+          <p className="text-center">{team.title}</p>
+          <p class="py-4">{team.description.slice(0, 80)}</p>
         </div>
       </div>
     </div>
