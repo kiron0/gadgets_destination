@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import useTitle from "../../hooks/useTitle";
 import Loader from "../Shared/Loader/Loader";
 import TItle from "../Shared/Title/Title";
+import TeamModals from "./TeamModals";
 
 const Team = () => {
   useTitle("Team");
@@ -62,6 +63,9 @@ const Team = () => {
               </div>
             ))}
           </div>
+          {teamMembers.map((teamModal) => (
+            <TeamModals team={teamModal}></TeamModals>
+          ))}
         </div>
       </section>
     </div>
