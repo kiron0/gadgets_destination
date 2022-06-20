@@ -43,9 +43,9 @@ const Team = () => {
               haven't heard of them.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-14 mx-auto">
             {teamMembers.map((team) => (
-              <div className="card w-96 bg-base-100 shadow-xl" key={team._id}>
+              <div className="card w-full bg-base-100 shadow-xl" key={team._id}>
                 <figure>
                   <img src={team.picture.large} alt="Shoes" />
                 </figure>
