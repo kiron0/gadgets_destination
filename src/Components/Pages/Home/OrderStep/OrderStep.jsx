@@ -14,7 +14,7 @@ const OrderStep = () => {
             <div className="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
               <div className="flex relative pb-12">
                 <div className="h-full w-10 absolute inset-0 flex items-center justify-center">
-                  <div className="h-full w-1 bg-gray-200 pointer-events-none"></div>
+                  <div className="h-full w-1 bg-base-100 pointer-events-none"></div>
                 </div>
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary inline-flex items-center justify-center text-white relative z-10">
                   <svg
@@ -159,7 +159,7 @@ const OrderStep = () => {
             </div>
             <img
               className="lg:w-3/5 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12"
-              src="https://images.unsplash.com/photo-1519752594763-2633d8d4ea29?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170"
+              src="https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg?t=st=1655751830~exp=1655752430~hmac=666a0561adccdda6e59604f19ee253495b58f24976624ffd88218ab9499aaede&w=996"
               alt="step"
             />
           </div>

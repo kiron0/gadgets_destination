@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import useTitle from "../../hooks/useTitle";
 import Loader from "../Shared/Loader/Loader";
 import TItle from "../Shared/Title/Title";
-import TeamModals from "./TeamModals";
+import TeamDetails from "./TeamDetails";
 
 const Team = () => {
+  const [modalTeam, setModalTeam] = useState({});
   useTitle("Team");
   const { data: teamMembers, isLoading } = useQuery("teamMembers", async () => {
     const res = await fetch("http://localhost:5000/teamMembers", {
@@ -45,29 +46,43 @@ const Team = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-14 mx-auto">
             {teamMembers.map((team) => (
-              <div className="card w-full bg-base-100 shadow-xl" key={team._id}>
-                <figure>
-                  <img src={team.picture.large} alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">{team.name}</h2>
-                  <div className="card-actions justify-end">
-                    <label
-                      for="my-modal-3"
-                      class="btn btn-primary text-white modal-button"
-                    >
-                      More Details
-                    </label>
-                  </div>
-                </div>
-              </div>
+              <TeamDetails
+                team={team}
+                key={team._id}
+                setModalTeam={setModalTeam}
+              ></TeamDetails>
             ))}
           </div>
-          {teamMembers.map((teamModal) => (
-            <TeamModals team={teamModal}></TeamModals>
-          ))}
         </div>
       </section>
+      {modalTeam && (
+        <>
+          <input type="checkbox" id="team-modal" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box relative">
+              <label
+                htmlFor="team-modal"
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </label>
+              <img
+                className="flex mx-auto py-8 rounded-xl w-52 lg:w-72"
+                src={modalTeam?.picture?.large}
+                alt=""
+              />
+              <h3 className="text-lg font-bold text-center">
+                {modalTeam?.name}
+              </h3>
+              <p className="text-center">{modalTeam?.education}</p>
+              <p className="text-center">{modalTeam?.title}</p>
+              <p className="text-center py-4">
+                {modalTeam?.description?.slice(0, 150)}
+              </p>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

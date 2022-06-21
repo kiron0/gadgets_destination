@@ -122,7 +122,7 @@ const Navbar = ({ handleThemeChange, theme }) => {
           <div className="navbar-end gap-3">
             {/* <li className="list-none mt-2">
               <label for="AddToCart" className="modal-button indicator">
-                <span class="indicator-item badge badge-secondary">
+                <span className="indicator-item badge badge-secondary">
                   {carts ? <>{carts?.length}</> : 0}
                 </span>
                 <MdOutlineShoppingCart className="text-3xl cursor-pointer" />
