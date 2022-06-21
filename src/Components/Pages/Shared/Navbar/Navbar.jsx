@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { BsTools } from "react-icons/bs";
 import { CgMenuGridO } from "react-icons/cg";
-import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
@@ -12,10 +11,12 @@ import auth from "../Firebase/Firebase.init";
 import useCarts from "../../../hooks/useCarts";
 import useProfileImage from "../../../hooks/useProfileImage";
 import Loading from "../Loading/Loading";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = ({ handleThemeChange, theme }) => {
   const [carts] = useCarts();
   const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const [image, imageLoading] = useProfileImage(user);
   const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState();
@@ -188,9 +189,13 @@ const Navbar = ({ handleThemeChange, theme }) => {
                         <span className="badge">New</span>
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/dashboard/myOrders">My Orders</Link>
-                    </li>
+                    {!admin ? (
+                      <li>
+                        <Link to="/dashboard/myOrders">My Orders</Link>
+                      </li>
+                    ) : (
+                      <></>
+                    )}
                     <li>
                       <Link to="/dashboard">Dashboard</Link>
                     </li>

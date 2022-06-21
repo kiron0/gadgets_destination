@@ -33,7 +33,7 @@ const Products = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>Contact </li>
+            <li>Shop </li>
           </ul>
         </div>
       </div>

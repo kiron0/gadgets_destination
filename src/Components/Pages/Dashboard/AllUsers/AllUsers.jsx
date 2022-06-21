@@ -33,7 +33,7 @@ const AllUsers = () => {
               <th>Make Admin</th>
               <th>Remove Admin</th>
               <th>Role</th>
-              <th>Action</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

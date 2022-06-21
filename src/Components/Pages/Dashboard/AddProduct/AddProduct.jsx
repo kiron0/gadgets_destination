@@ -47,11 +47,12 @@ const AddProduct = () => {
     const productData = {
       productName: data?.productName,
       availableQty: data?.availableProductQty,
-      orderQty: data?.maximumOrderQty,
+      orderQty: 1,
       price: data?.price,
       productDescription: data?.productDescription,
       image: image,
-      createdAt: new Date().toDateString(),
+      createdAt:
+        new Date().toDateString() + " " + new Date().toLocaleTimeString(),
       creator: {
         name: auth?.currentUser?.displayName,
         uid: auth?.currentUser?.uid,
@@ -112,22 +113,6 @@ const AddProduct = () => {
             {errors.availableProductQty?.type === "required" && (
               <span className="text-error">
                 Available Product Quantity is required
-              </span>
-            )}
-          </div>
-          <div className="my-2 w-full">
-            <label htmlFor="maximum" className="my-2">
-              Maximum Product Quantity
-            </label>
-            <input
-              type="number"
-              placeholder="Maximum Product Quantity"
-              className="input input-bordered w-full"
-              {...register("maximumOrderQty", { required: true })}
-            />
-            {errors.maximumOrderQty?.type === "required" && (
-              <span className="text-error">
-                Maximum Order Quantity is required
               </span>
             )}
           </div>

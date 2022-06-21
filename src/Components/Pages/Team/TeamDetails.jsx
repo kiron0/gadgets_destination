@@ -6,16 +6,12 @@ const TeamDetails = ({ team, setModalTeam }) => {
     <>
       <div class="card w-100 bg-base-100 shadow-xl">
         <figure class="px-10 pt-10">
-          <img
-            src={picture.large}
-            alt="Shoes"
-            class="w-64 lg:w-52 rounded-xl"
-          />
+          <img src={picture.large} alt="" class="w-64 lg:w-52 rounded-xl" />
         </figure>
         <div class="card-body items-center text-center">
           <h2 class="card-title">{name}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div class="card-actions">
+          <p>{education}</p>
+          <div class="card-actions pt-6 lg:pt-0">
             <label
               htmlFor="team-modal"
               className="btn btn-primary text-white modal-button"
