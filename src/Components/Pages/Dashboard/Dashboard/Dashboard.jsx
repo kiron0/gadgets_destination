@@ -1,6 +1,7 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { BsGrid, BsTools } from "react-icons/bs";
+import { BsCartCheckFill, BsGrid } from "react-icons/bs";
+import { AiFillAppstore } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -10,6 +11,14 @@ import useTitle from "../../../hooks/useTitle";
 import auth from "../../Shared/Firebase/Firebase.init";
 import useAdmin from "../../../hooks/useAdmin";
 import useProfileImage from "../../../hooks/useProfileImage";
+import {
+  MdManageAccounts,
+  MdOutlinePayment,
+  MdOutlineReviews,
+  MdSpaceDashboard,
+} from "react-icons/md";
+import { HiUsers } from "react-icons/hi";
+import { FcAddDatabase } from "react-icons/fc";
 
 const Dashboard = ({ handleThemeChange, theme }) => {
   useTitle("Dashboard");
@@ -121,39 +130,51 @@ const Dashboard = ({ handleThemeChange, theme }) => {
               to="/"
               className="logo font-semibold text-center flex items-center flex-col gap-2"
             >
-              <BsTools className="text-3xl" />
+              <AiFillAppstore className="text-3xl" />
               Gadgets Destination
             </Link>
           </div>
           <li className="py-2 mt-4">
-            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/dashboard">
+              <MdSpaceDashboard /> Dashboard
+            </NavLink>
           </li>
           {!admin && (
             <>
               <li className="py-2">
-                <NavLink to="/dashboard/myOrders">My Orders</NavLink>
+                <NavLink to="/dashboard/myOrders">
+                  <BsCartCheckFill /> My Orders
+                </NavLink>
               </li>
               <li className="py-2">
-                <NavLink to="/dashboard/addReview">Add a review</NavLink>
+                <NavLink to="/dashboard/addReview">
+                  <MdOutlineReviews /> Add a review
+                </NavLink>
               </li>
               <li className="py-2">
                 <NavLink to="/dashboard/paymentHistory">
-                  Payment History{" "}
+                  <MdOutlinePayment /> Payment History{" "}
                   <small className="badge badge-outline text-sm">New</small>
                 </NavLink>
               </li>
             </>
           )}
           <li className="py-2">
-            <NavLink to="/dashboard/profile">Profile</NavLink>
+            <NavLink to="/dashboard/profile">
+              <HiUsers /> Profile
+            </NavLink>
           </li>
           {admin && (
             <>
               <li className="py-2">
-                <NavLink to="/dashboard/addProduct">Add a Product</NavLink>
+                <NavLink to="/dashboard/addProduct">
+                  <FcAddDatabase className="text-xl" /> Add a Product
+                </NavLink>
               </li>
               <li className="py-2">
-                <NavLink to="/dashboard/allUsers">Manage Users</NavLink>
+                <NavLink to="/dashboard/allUsers">
+                  <MdManageAccounts className="text-2xl" /> Manage Users
+                </NavLink>
               </li>
               <li className="py-2">
                 <NavLink to="/dashboard/manageOrder">Manage Orders</NavLink>
@@ -167,7 +188,9 @@ const Dashboard = ({ handleThemeChange, theme }) => {
                 <NavLink to="/dashboard/addTeamMember">Add Team Member</NavLink>
               </li>
               <li className="py-2">
-                <NavLink to="/dashboard/manageReviews">Manage Reviews</NavLink>
+                <NavLink to="/dashboard/manageReviews">
+                  <MdOutlineReviews /> Manage Reviews
+                </NavLink>
               </li>
             </>
           )}

@@ -1,6 +1,6 @@
 import React from "react";
 import { BsCalendarDate } from "react-icons/bs";
-import { RiDeleteBack2Line } from "react-icons/ri";
+import { FiDelete } from "react-icons/fi";
 import Swal from "sweetalert2";
 
 const OrderManageRow = ({
@@ -100,7 +100,7 @@ const OrderManageRow = ({
         <button
           className={`${
             paid ? (shipped ? "btn-primary" : "btn-success") : "btn-error"
-          } btn btn-xs`}
+          } btn btn-xs text-white`}
         >
           {paid ? (shipped ? "Delivered" : "Pending") : "Unpaid"}
         </button>
@@ -109,19 +109,19 @@ const OrderManageRow = ({
         <button
           onClick={() => handleShipped(_id)}
           disabled={!paid || (shipped && true)}
-          className="btn-secondary btn btn-xs"
+          className="btn-secondary btn btn-xs text-white"
         >
           Shipped
         </button>
       </td>
       <td>
-        <button
+        <label
           disabled={shipped && true}
           onClick={() => handleOrderDelete(_id)}
-          className="bg-red-600 border-red-600 text-white btn btn-xs"
+          className="text-red-500 cursor-pointer"
         >
-          <RiDeleteBack2Line />
-        </button>
+          <FiDelete className="text-2xl"></FiDelete>
+        </label>
       </td>
     </tr>
   );

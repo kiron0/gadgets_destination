@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
-import { BsTwitter } from "react-icons/bs";
-import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import useTitle from "../../hooks/useTitle";
 import Loader from "../Shared/Loader/Loader";
 import TeamDetails from "./TeamDetails";
@@ -64,33 +63,54 @@ const Team = () => {
             <div className="modal-box relative">
               <label
                 htmlFor="team-modal"
-                className="btn btn-sm btn-circle btn-primary absolute right-2 top-2 text-white"
+                className="btn btn-sm btn-circle absolute right-2 top-2 text-white"
               >
                 ✕
               </label>
               <img
-                className="flex mx-auto py-8 w-52 lg:w-72"
-                src={modalTeam?.picture?.large}
+                className="flex mx-auto my-4 w-52 lg:w-72 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+                src={modalTeam?.image2}
                 alt=""
               />
               <h3 className="text-lg font-bold text-center">
-                {modalTeam?.name}
+                {modalTeam?.membersName}
               </h3>
               <p className="text-center">{modalTeam?.education}</p>
+              <div class="badge badge-dark text-white flex mx-auto mt-2">
+                {modalTeam?.position ? modalTeam?.position : "Team Member"}
+              </div>
               <p className="text-center">{modalTeam?.title}</p>
               <p className="text-center py-4">
-                {modalTeam?.description?.slice(0, 150)}
+                {modalTeam?.aboutYourself?.slice(0, 230)}...
               </p>
               <div className="card-actions">
                 <div className="flex items-center mx-auto gap-2 py-2">
                   <button className="btn btn-square btn-sm text-white">
-                    <FaFacebookF />
+                    <a
+                      href={modalTeam?.facebookUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FaFacebookF />
+                    </a>
                   </button>
                   <button className="btn btn-square btn-sm text-white">
-                    <BsTwitter />
+                    <a
+                      href={modalTeam?.instagramUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FaInstagram />
+                    </a>
                   </button>
                   <button className="btn btn-square btn-sm text-white">
-                    <FaLinkedinIn />
+                    <a
+                      href={modalTeam?.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FaGithub />
+                    </a>
                   </button>
                 </div>
               </div>

@@ -8,6 +8,7 @@ const AddTeamMember = () => {
   useTitle("Add Team Member");
   const upload_api_key = `e1a6a4f77bc884f9b46b0d06d86c05e5`;
   const [isFile, setIsFile] = useState(false);
+  const [isFile2, setIsFile2] = useState(false);
   const {
     register,
     formState: { errors },
@@ -18,41 +19,52 @@ const AddTeamMember = () => {
   const [loading, setLoading] = useState("false");
   const onSubmit = (data) => {
     setLoading(false);
-    if (!isFile) {
+    if (!isFile || !isFile2) {
       const url = `https://api.imgbb.com/1/upload?key=${upload_api_key}`;
 
-      const formData = new FormData();
-      const image = data.productImage[0];
-      formData.append("image", image);
+      const fd = new FormData();
+      fd.append("image", data?.memberImage[0]);
+      fd.append("image", data?.memberImage[1]);
+
+      console.log(data, fd);
 
       fetch(url, {
         method: "POST",
-        body: formData,
+        body: fd,
       })
         .then((res) => res.json())
         .then((result) => {
+          console.log(result);
           if (result?.success) {
-            saveMembersDataOnMongodb(result?.data?.url, data);
+            saveMembersDataOnMongodb(
+              result?.data?.url,
+              result?.data?.memberImage2?.url,
+              data
+            );
             setLoading(true);
           }
         });
     } else {
-      const inputURL = data.imageUrl;
-      saveMembersDataOnMongodb(inputURL, data);
+      const inputURL = data?.imageUrl;
+      const inputURL2 = data?.imageUrl2;
+      saveMembersDataOnMongodb(inputURL, inputURL2, data);
       setLoading(true);
     }
   };
 
-  const saveMembersDataOnMongodb = async (image, data) => {
+  const saveMembersDataOnMongodb = async (image, image2, data) => {
     const membersData = {
       membersName: data?.membersName,
       education: data?.education,
+      position: data?.position,
       facebookUrl: data?.facebookUrl,
       instagramUrl: data?.instagramUrl,
       githubUrl: data?.githubUrl,
       aboutYourself: data?.aboutYourself,
-      image: image,
-      createdAt: new Date().toDateString(),
+      image: image || data?.inputURL,
+      image2: image2 || data?.inputURL2,
+      createdAt:
+        new Date().toDateString() + " " + new Date().toLocaleTimeString(),
       addedBy: {
         name: auth?.currentUser?.displayName,
         uid: auth?.currentUser?.uid,
@@ -99,19 +111,37 @@ const AddTeamMember = () => {
             <span className="text-error">Name is required</span>
           )}
         </div>
-        <div className="my-2">
-          <label htmlFor="name" className="my-2">
-            Education Background
-          </label>
-          <input
-            type="text"
-            placeholder="Education Background"
-            className="input input-bordered w-full"
-            {...register("education", { required: true })}
-          />
-          {errors.education?.type === "required" && (
-            <span className="text-error">Education Background is required</span>
-          )}
+        <div className="flex flex-col md:flex-row items-center gap-x-3 w-full">
+          <div className="my-2 w-full">
+            <label htmlFor="name" className="my-2">
+              Education Background
+            </label>
+            <input
+              type="text"
+              placeholder="Education Background"
+              className="input input-bordered w-full"
+              {...register("education", { required: true })}
+            />
+            {errors.education?.type === "required" && (
+              <span className="text-error">
+                Education Background is required
+              </span>
+            )}
+          </div>
+          <div className="my-2 w-full">
+            <label htmlFor="name" className="my-2">
+              Position
+            </label>
+            <input
+              type="text"
+              placeholder="Your Position"
+              className="input input-bordered w-full"
+              {...register("position", { required: true })}
+            />
+            {errors.position?.type === "required" && (
+              <span className="text-error">Position is required</span>
+            )}
+          </div>
         </div>
         <p className="my-4 text-center text-xl">Social Media Links</p>
         <div className="flex flex-col md:flex-row items-center gap-3 w-full">
@@ -203,16 +233,50 @@ const AddTeamMember = () => {
               name="file"
               className="block border p-2 w-full rounded"
               id="file"
-              {...register("productImage", { required: true })}
+              {...register("memberImage", { required: true })}
+              multiple
             />
           )}
-
-          {errors.productImage?.type === "required" ||
+          {errors.memberImage?.type === "required" ||
             (errors.imageUrl?.type === "required" && (
               <span className="text-error">
                 Product Image Field is required
               </span>
             ))}
+        </div>
+        <div className="my-2">
+          <label htmlFor="file" className="my-2 block">
+            Detail Image
+            <button
+              type="button"
+              className="btn btn-xs mx-2 text-white"
+              onClick={() => setIsFile2((prev) => !prev)}
+            >
+              {isFile2 ? "Upload" : "URL"}
+            </button>
+          </label>
+          {isFile2 ? (
+            <input
+              type="url"
+              name="file"
+              className="input input-bordered w-full"
+              placeholder="Put Your Image Link"
+              id="file"
+              {...register("imageUrl2", { required: true })}
+            />
+          ) : (
+            <input
+              type="file"
+              name="file"
+              className="block border p-2 w-full rounded"
+              id="file"
+              {...register("memberImage", { required: true })}
+              multiple
+            />
+          )}
+          {errors.memberImage?.type === "required" && (
+            <span className="text-error">Detail Image is required</span>
+          )}
         </div>
         <div className="my-3 text-right">
           <button

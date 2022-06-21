@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { BsTools } from "react-icons/bs";
+import { AiFillAppstore } from "react-icons/ai";
 import { CgMenuGridO } from "react-icons/cg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
@@ -105,7 +105,7 @@ const Navbar = ({ handleThemeChange, theme }) => {
               className="btn btn-ghost normal-case text-xl flex gap-2 items-center"
               to="/"
             >
-              <BsTools className="hidden md:block" />{" "}
+              <AiFillAppstore className="hidden md:block" />{" "}
               {!user ? (
                 <span className="ml-[-17px] md:ml-0 lg:ml-0 text-[16px] md:text-xl lg:text-xl">
                   Gadgets Destination

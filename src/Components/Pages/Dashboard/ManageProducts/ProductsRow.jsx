@@ -1,5 +1,5 @@
 import React from "react";
-import { BsTrash } from "react-icons/bs";
+import { FiDelete } from "react-icons/fi";
 import Swal from "sweetalert2";
 
 const ProductRow = ({
@@ -74,9 +74,9 @@ const ProductRow = ({
       <td>
         <button
           onClick={() => handleProductDelete(_id)}
-          className="btn bg-red-600 border-red-600 text-white btn-sm"
+          className="text-red-500 cursor-pointer"
         >
-          <BsTrash className="text-xl" />
+          <FiDelete className="text-2xl"></FiDelete>
         </button>
       </td>
     </tr>
