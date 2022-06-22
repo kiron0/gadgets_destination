@@ -31,6 +31,7 @@ import TeamDetails from "./Components/Pages/Team/TeamDetails";
 import Blogs from "./Components/Pages/Blogs/Blogs";
 import BlogDetails from "./Components/Pages/Blogs/BlogDetails";
 import Contact from "./Components/Pages/Contact/Contact";
+import DeleteTeamMember from "./Components/Pages/Dashboard/DeleteTeamMember/DeleteTeamMember";
 
 function App() {
   const [theme, setTheme] = useState(false);
@@ -141,6 +142,14 @@ function App() {
             element={
               <RequireAdmin>
                 <AddTeamMember />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="deleteTeamMember"
+            element={
+              <RequireAdmin>
+                <DeleteTeamMember />
               </RequireAdmin>
             }
           ></Route>

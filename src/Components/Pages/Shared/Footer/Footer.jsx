@@ -77,6 +77,7 @@ const Footer = () => {
           </a>
         </div>
         <div>
+          <p>We accepted</p>
           <img src={ssl} alt="" />
         </div>
       </footer>

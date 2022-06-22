@@ -34,7 +34,7 @@ const AddTeamMember = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
+          console.log(result?.data);
           if (result?.success) {
             saveMembersDataOnMongodb(
               result?.data?.url,

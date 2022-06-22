@@ -76,7 +76,7 @@ const Team = () => {
                 {modalTeam?.membersName}
               </h3>
               <p className="text-center">{modalTeam?.education}</p>
-              <div class="badge badge-dark text-white flex mx-auto mt-2">
+              <div className="badge badge-dark text-white flex mx-auto mt-2">
                 {modalTeam?.position ? modalTeam?.position : "Team Member"}
               </div>
               <p className="text-center">{modalTeam?.title}</p>
