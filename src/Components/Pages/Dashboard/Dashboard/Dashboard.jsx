@@ -100,7 +100,7 @@ const Dashboard = ({ handleThemeChange, theme }) => {
                     alt={auth?.currentUser?.displayName}
                   />
                 ) : (
-                  <img src={image} alt={auth?.currentUser?.displayName} />
+                  <img src={image} alt="" />
                 )}
               </div>
             </label>

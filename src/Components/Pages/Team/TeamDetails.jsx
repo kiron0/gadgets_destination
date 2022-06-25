@@ -1,6 +1,6 @@
 import React from "react";
 
-const TeamDetails = ({ team, setModalTeam }) => {
+const TeamDetails = ({ team, setModalTeam, refetch }) => {
   const {
     _id,
     membersName,
@@ -21,9 +21,16 @@ const TeamDetails = ({ team, setModalTeam }) => {
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{membersName}</h2>
-          <p>{education}</p>
-          <div className="badge badge-outline mt-1 lg:mt-0">
-            {position ? position : "Team Member"}
+          <p className="text-center">{education}</p>
+          <p className="text-center">5th Semester (2019-2020)</p>
+          <div
+            className={
+              position === "Team Member"
+                ? "badge badge-outline mt-1 lg:mt-0"
+                : "badge badge-dark text-white mt-1 lg:mt-0"
+            }
+          >
+            {position}
           </div>
           <div className="card-actions pt-6">
             <label

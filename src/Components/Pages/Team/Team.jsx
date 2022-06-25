@@ -9,15 +9,13 @@ import TeamDetails from "./TeamDetails";
 const Team = () => {
   const [modalTeam, setModalTeam] = useState({});
   useTitle("Team");
-  const { data: teamMembers, isLoading } = useQuery("teamMembers", async () => {
+  const {
+    data: teamMembers,
+    isLoading,
+    refetch,
+  } = useQuery("teamMembers", async () => {
     const res = await fetch(
-      "https://gadgets-destination.herokuapp.com/teamMembers",
-      {
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
+      "https://gadgets-destination.herokuapp.com/teamMembers"
     );
     const data = await res.json();
     return data;
@@ -26,8 +24,6 @@ const Team = () => {
   if (
     isLoading ||
     teamMembers?.length === undefined ||
-    teamMembers === null ||
-    !teamMembers ||
     teamMembers.length === 0
   ) {
     return <Loader />;
@@ -54,6 +50,7 @@ const Team = () => {
                 team={team}
                 key={team._id}
                 setModalTeam={setModalTeam}
+                refetch={refetch}
               ></TeamDetails>
             ))}
           </div>
@@ -75,16 +72,17 @@ const Team = () => {
                 src={modalTeam?.image2}
                 alt=""
               />
-              <h3 className="text-lg font-bold text-center">
+              <h3 className="text-lg font-semibold text-center flex items-center justify-center gap-1">
                 {modalTeam?.membersName}
+                <div className="badge badge-dark text-white">
+                  {modalTeam?.position}
+                </div>
               </h3>
               <p className="text-center">{modalTeam?.education}</p>
-              <div className="badge badge-dark text-white flex mx-auto mt-2">
-                {modalTeam?.position ? modalTeam?.position : "Team Member"}
-              </div>
+              <p className="text-center">5th Semester (2019-2020)</p>
               <p className="text-center">{modalTeam?.title}</p>
               <p className="text-center py-4">
-                {modalTeam?.aboutYourself?.slice(0, 230)}...
+                {modalTeam?.aboutYourself?.slice(0, 190)}...
               </p>
               <div className="card-actions">
                 <div className="flex items-center mx-auto gap-2 py-2">

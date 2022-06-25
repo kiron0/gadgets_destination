@@ -27,7 +27,6 @@ import PaymentHistory from "./Components/Pages/Dashboard/PaymentHistory/PaymentH
 import ManageProducts from "./Components/Pages/Dashboard/ManageProducts/ManageProducts";
 import AddTeamMember from "./Components/Pages/Dashboard/AddTeamMember/AddTeamMember";
 import ManageReviews from "./Components/Pages/Dashboard/ManageReviews/ManageReviews";
-import TeamDetails from "./Components/Pages/Team/TeamDetails";
 import Blogs from "./Components/Pages/Blogs/Blogs";
 import BlogDetails from "./Components/Pages/Blogs/BlogDetails";
 import Contact from "./Components/Pages/Contact/Contact";
@@ -180,7 +179,6 @@ function App() {
           }
         />
         <Route path="/teamMembers" element={<Team />} />
-        <Route path="/teamMembers/:details" element={<TeamDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ScrollButton></ScrollButton>
