@@ -153,7 +153,6 @@ const AddTeamMember = () => {
               type="text"
               placeholder="Facebook"
               className="input input-bordered w-full"
-              id="facebook"
               {...register("facebookUrl", { required: true })}
             />
             {errors.facebookUrl?.type === "required" && (

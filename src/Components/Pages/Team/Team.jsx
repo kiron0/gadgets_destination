@@ -44,7 +44,7 @@ const Team = () => {
         </div>
       </div>
       <section className="body-font bg-base-100">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-12 mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-14 mx-auto">
             {teamMembers.map((team) => (
               <TeamDetails
@@ -87,7 +87,11 @@ const Team = () => {
                 <div className="flex items-center mx-auto gap-2 py-2">
                   <button className="btn btn-square btn-sm text-white">
                     <a
-                      href={modalTeam?.facebookUrl}
+                      href={
+                        modalTeam?.facebookUrl
+                          ? modalTeam?.facebookUrl
+                          : "https://www.facebook.com/"
+                      }
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -96,7 +100,11 @@ const Team = () => {
                   </button>
                   <button className="btn btn-square btn-sm text-white">
                     <a
-                      href={modalTeam?.instagramUrl}
+                      href={
+                        modalTeam?.instagramUrl
+                          ? modalTeam?.instagramUrl
+                          : "https://instagram.com"
+                      }
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -105,7 +113,11 @@ const Team = () => {
                   </button>
                   <button className="btn btn-square btn-sm text-white">
                     <a
-                      href={modalTeam?.githubUrl}
+                      href={
+                        modalTeam?.githubUrl
+                          ? modalTeam?.githubUrl
+                          : "https://github.com"
+                      }
                       target="_blank"
                       rel="noreferrer"
                     >
