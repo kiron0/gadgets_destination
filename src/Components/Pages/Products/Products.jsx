@@ -10,12 +10,15 @@ import Product from "./Product";
 const Products = () => {
   useTitle("Shop");
   const { data: products, isLoading } = useQuery("products", async () => {
-    const res = await fetch("http://localhost:5000/products", {
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
+    const res = await fetch(
+      "https://gadgets-destination.herokuapp.com/products",
+      {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
     const data = await res.json();
     return data;
   });

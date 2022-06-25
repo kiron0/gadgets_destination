@@ -8,7 +8,7 @@ const BlogDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/blogs/${id}`, {
+    fetch(`https://gadgets-destination.herokuapp.com/blogs/${id}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

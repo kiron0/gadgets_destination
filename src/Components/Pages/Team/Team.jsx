@@ -10,12 +10,15 @@ const Team = () => {
   const [modalTeam, setModalTeam] = useState({});
   useTitle("Team");
   const { data: teamMembers, isLoading } = useQuery("teamMembers", async () => {
-    const res = await fetch("http://localhost:5000/teamMembers", {
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
+    const res = await fetch(
+      "https://gadgets-destination.herokuapp.com/teamMembers",
+      {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
     const data = await res.json();
     return data;
   });

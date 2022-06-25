@@ -27,14 +27,17 @@ const OrderManageRow = ({
       confirmButtonText: "Yes, Shipped it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/orders/shipped/${id}`, {
-          method: "PATCH",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ shipped: true }),
-        })
+        fetch(
+          `https://gadgets-destination.herokuapp.com/orders/shipped/${id}`,
+          {
+            method: "PATCH",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ shipped: true }),
+          }
+        )
           .then((res) => res.json())
           .then((result) => {
             if (result.modifiedCount) {
@@ -58,7 +61,7 @@ const OrderManageRow = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://gadgets-destination.herokuapp.com/orders/${id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -59,7 +59,7 @@ const AddProduct = () => {
       },
     };
 
-    await fetch(`http://localhost:5000/products`, {
+    await fetch(`https://gadgets-destination.herokuapp.com/products`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

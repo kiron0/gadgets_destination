@@ -20,7 +20,7 @@ const TeamCard = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/teamMembers/${_id}`, {
+        fetch(`https://gadgets-destination.herokuapp.com/teamMembers/${_id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
