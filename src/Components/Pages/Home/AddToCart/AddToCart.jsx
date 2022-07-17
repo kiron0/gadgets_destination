@@ -18,11 +18,10 @@ const AddToCart = () => {
           >
             ✕
           </label>
-          <h2>{carts?.length}</h2>
           {
             <ul className="list-none">
-              {carts.map((cart) => (
-                <li key={cart.id}>{cart.uid}</li>
+              {carts?.map((cart) => (
+                <li key={cart._id}>{cart?.productInfo?.productName}</li>
               ))}
             </ul>
           }

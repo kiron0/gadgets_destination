@@ -16,7 +16,6 @@ const CardBlog = ({ blog }) => {
         <Link
           to={`/blogDetails/${_id}`}
           className="text-indigo-500 inline-flex items-center"
-          href="/"
         >
           Learn More
           <svg

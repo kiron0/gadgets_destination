@@ -18,7 +18,7 @@ const AllUsers = () => {
       },
     }).then((res) => res.json())
   );
-  if (isLoading) {
+  if (isLoading || !users || !users.length) {
     return <Loading></Loading>;
   }
   return (

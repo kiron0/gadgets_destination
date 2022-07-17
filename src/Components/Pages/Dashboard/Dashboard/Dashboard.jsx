@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { BsCartCheckFill, BsGrid } from "react-icons/bs";
+import { BsGrid } from "react-icons/bs";
 import { AiFillAppstore } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import { signOut } from "firebase/auth";
@@ -11,14 +11,6 @@ import useTitle from "../../../hooks/useTitle";
 import auth from "../../Shared/Firebase/Firebase.init";
 import useAdmin from "../../../hooks/useAdmin";
 import useProfileImage from "../../../hooks/useProfileImage";
-import {
-  MdManageAccounts,
-  MdOutlinePayment,
-  MdOutlineReviews,
-  MdSpaceDashboard,
-} from "react-icons/md";
-import { HiUsers } from "react-icons/hi";
-import { FcAddDatabase } from "react-icons/fc";
 
 const Dashboard = ({ handleThemeChange, theme }) => {
   useTitle("Dashboard");
@@ -32,7 +24,7 @@ const Dashboard = ({ handleThemeChange, theme }) => {
       navigate("/");
       toast.success(`Thank you, ${user.displayName} to stay with us!`, {
         autoClose: 3000,
-        position: "bottom-center",
+        position: "bottom-left",
       });
     });
   };
@@ -56,7 +48,7 @@ const Dashboard = ({ handleThemeChange, theme }) => {
             to="/"
             className="text-lg lg:text-2xl md:text-2xl font-semibold"
           >
-            Gadgets Destination
+            Gadgets Emporium
           </Link>
           <div className="lg:mr-[-74rem] pt-2 md:mr-[-14rem] flex justify-center items-center">
             <li className="list-none">
@@ -100,13 +92,13 @@ const Dashboard = ({ handleThemeChange, theme }) => {
                     alt={auth?.currentUser?.displayName}
                   />
                 ) : (
-                  <img src={image} alt="" />
+                  <img src={image} alt={auth?.currentUser?.displayName} />
                 )}
               </div>
             </label>
             <ul
               tabIndex="0"
-              className="mt-3 p-2 shadow-xl menu menu-compact dropdown-content bg-base-300 rounded-box w-52"
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-300 rounded-box w-52"
             >
               <li>
                 <Link to="/dashboard/profile" className="justify-between">
@@ -131,75 +123,61 @@ const Dashboard = ({ handleThemeChange, theme }) => {
               className="logo font-semibold text-center flex items-center flex-col gap-2"
             >
               <AiFillAppstore className="text-3xl" />
-              Gadgets Destination
+              Gadgets Emporium
             </Link>
           </div>
-          <li className="py-2 mt-2">
-            <NavLink to="/dashboard">
-              <MdSpaceDashboard /> Dashboard
-            </NavLink>
+          <li className="py-2 mt-4">
+            <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
           {!admin && (
             <>
               <li className="py-2">
-                <NavLink to="/dashboard/myOrders">
-                  <BsCartCheckFill /> My Orders
-                </NavLink>
+                <NavLink to="/dashboard/myOrders">My Orders</NavLink>
               </li>
               <li className="py-2">
-                <NavLink to="/dashboard/addReview">
-                  <MdOutlineReviews /> Add a review
-                </NavLink>
+                <NavLink to="/dashboard/addReview">Add a review</NavLink>
               </li>
               <li className="py-2">
                 <NavLink to="/dashboard/paymentHistory">
-                  <MdOutlinePayment /> Payment History{" "}
+                  Payment History{" "}
                   <small className="badge badge-outline text-sm">New</small>
                 </NavLink>
               </li>
             </>
           )}
-          <li className="py-2">
-            <NavLink to="/dashboard/profile">
-              <HiUsers /> Profile
-            </NavLink>
-          </li>
           {admin && (
             <>
-              <li className="py-2">
-                <NavLink to="/dashboard/addProduct">
-                  <FcAddDatabase className="text-xl" /> Add a Product
-                </NavLink>
+              <li className="py-1">
+                <NavLink to="/dashboard/addProduct">Add a Product</NavLink>
               </li>
-              <li className="py-2">
-                <NavLink to="/dashboard/allUsers">
-                  <MdManageAccounts className="text-2xl" /> Manage Users
-                </NavLink>
+              <li className="py-1">
+                <NavLink to="/dashboard/allUsers">Manage Users</NavLink>
               </li>
-              <li className="py-2">
+              <li className="py-1">
                 <NavLink to="/dashboard/manageOrder">Manage Orders</NavLink>
               </li>
-              <li className="py-2">
+              <li className="py-1">
                 <NavLink to="/dashboard/manageProducts">
                   Manage Products
                 </NavLink>
               </li>
-              <li className="py-2">
+              <li className="py-1">
                 <NavLink to="/dashboard/addTeamMember">Add Team Member</NavLink>
               </li>
-              <li className="py-2">
+              <li className="py-1">
                 <NavLink to="/dashboard/deleteTeamMember">
                   Delete Team Member
                 </NavLink>
               </li>
-              <li className="py-2">
-                <NavLink to="/dashboard/manageReviews">
-                  <MdOutlineReviews /> Manage Reviews
-                </NavLink>
+              <li className="py-1">
+                <NavLink to="/dashboard/manageReviews">Manage Reviews</NavLink>
               </li>
             </>
           )}
-          <li className={admin ? "lg:pt-36" : "lg:pt-96"}>
+          <li className="py-1">
+            <NavLink to="/dashboard/management-blog">Blog Management </NavLink>
+          </li>
+          <li className={admin ? "lg:pt-52" : "lg:pt-96"}>
             <button
               onClick={handleLogOut}
               className="bg-primary rounded-lg text-white"

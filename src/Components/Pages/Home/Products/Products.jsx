@@ -30,11 +30,6 @@ const Products = () => {
     return <Loader />;
   }
 
-  // add to cart button
-  const addToCart = () => {
-    console.log("add to cart");
-  };
-
   return (
     <div className="py-28 lg:px-12">
       <TItle
@@ -98,20 +93,11 @@ const Products = () => {
                       </div>
                     ) : (
                       <button
+                        className="btn btn-primary text-white mt-4"
                         onClick={() => navigate(`/purchase/${_id}`)}
-                        className="btn btn-primary text-white mt-4"
-                      >
-                        Order Now
-                      </button>
-                    )}
-                    {admin ? (
-                      <></>
-                    ) : (
-                      <button
-                        className="btn btn-primary text-white mt-4"
-                        onClick={addToCart}
                       >
                         <MdOutlineShoppingCart className="text-xl" />
+                        Add To Cart
                       </button>
                     )}
                   </div>

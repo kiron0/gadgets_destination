@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { AiFillAppstore } from "react-icons/ai";
 import { CgMenuGridO } from "react-icons/cg";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -10,16 +10,19 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import auth from "../Firebase/Firebase.init";
 import useCarts from "../../../hooks/useCarts";
 import useProfileImage from "../../../hooks/useProfileImage";
-import Loading from "../Loading/Loading";
 import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = ({ handleThemeChange, theme }) => {
   const [carts] = useCarts();
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
-  const [image, imageLoading] = useProfileImage(user);
+  const [image] = useProfileImage(user);
   const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {}, [carts]);
 
   useEffect(() => {
     setScrollY(window.scrollY);
@@ -72,10 +75,6 @@ const Navbar = ({ handleThemeChange, theme }) => {
     </>
   );
 
-  if (imageLoading) {
-    return <Loading></Loading>;
-  }
-
   return (
     <div className="fixed top-0 w-full z-50">
       <div
@@ -122,13 +121,15 @@ const Navbar = ({ handleThemeChange, theme }) => {
           </div>
           <div className="navbar-end gap-3">
             {/* <li className="list-none mt-2">
-              <label for="AddToCart" className="modal-button indicator">
-                <span className="indicator-item badge badge-secondary">
-                  {carts ? <>{carts?.length}</> : 0}
-                </span>
-                <MdOutlineShoppingCart className="text-3xl cursor-pointer" />
-              </label>
+              <span className="indicator-item badge badge-secondary">
+                {carts ? <>{carts?.length}</> : 0}
+              </span>
+              <MdOutlineShoppingCart
+                onClick={() => navigate("/dashboard/myOrders")}
+                className="text-3xl cursor-pointer"
+              />
             </li> */}
+
             <li className="list-none">
               <button
                 onClick={handleThemeChange}

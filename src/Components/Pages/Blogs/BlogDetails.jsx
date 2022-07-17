@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdArrowBackIos } from "react-icons/md";
+import { useQuery } from "react-query";
+import Loader from "../Shared/Loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const [blog, setBlog] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`https://gadgets-destination.herokuapp.com/blogs/${id}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setBlog(data));
-  }, [id]);
+  const { data: blog, isLoading } = useQuery("blog", async () => {
+    const res = await fetch(
+      `https://gadgets-destination.herokuapp.com/blogs/${id}`
+    );
+    const data = await res.json();
+    return data;
+  });
+
+  if (isLoading || !blog) {
+    return <Loader></Loader>;
+  }
   return (
     <div className="blog-details py-28 h-screen">
       <div className="container mx-auto shadow-md rounded">

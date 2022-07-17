@@ -1,18 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const TeamDetails = ({ team, setModalTeam, refetch }) => {
-  const {
-    _id,
-    membersName,
-    image,
-    image2,
-    education,
-    position,
-    facebookUrl,
-    instagramUrl,
-    githubUrl,
-    aboutYourself,
-  } = team;
+const TeamCard = ({ team }) => {
+  const navigate = useNavigate();
+  const { _id, membersName, image, education, position } = team;
   return (
     <>
       <div className="card w-100 bg-base-100 shadow-xl">
@@ -33,26 +24,12 @@ const TeamDetails = ({ team, setModalTeam, refetch }) => {
             {position}
           </div>
           <div className="card-actions pt-6">
-            <label
-              htmlFor="team-modal"
-              className="btn btn-primary text-white modal-button"
-              onClick={() =>
-                setModalTeam({
-                  _id,
-                  membersName,
-                  image,
-                  image2,
-                  education,
-                  position,
-                  facebookUrl,
-                  instagramUrl,
-                  githubUrl,
-                  aboutYourself,
-                })
-              }
+            <button
+              onClick={() => navigate(`/teamMembers/${_id}`)}
+              className="btn btn-primary text-white"
             >
               More Details
-            </label>
+            </button>
           </div>
         </div>
       </div>
@@ -60,4 +37,4 @@ const TeamDetails = ({ team, setModalTeam, refetch }) => {
   );
 };
 
-export default TeamDetails;
+export default TeamCard;

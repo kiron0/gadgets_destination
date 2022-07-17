@@ -228,7 +228,7 @@ const ProductDetails = () => {
                     className="btn btn-primary text-white"
                     disabled={error && true}
                   >
-                    Place Order
+                    Add To Cart
                   </button>
                 )}
               </div>
