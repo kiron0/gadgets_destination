@@ -17,7 +17,7 @@ const Products = () => {
     const searchText = event.target.search.value;
     if (!searchText) return toast.error(`Search field is required.`);
     await fetch(
-      `https://gadgets-destination.herokuapp.com//products/search?q=${searchText}`
+      `https://gadgets-destination.herokuapp.com/products/search?q=${searchText}`
     )
       .then((res) => res.json())
       .then((result) => {
