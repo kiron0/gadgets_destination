@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { RiArrowRightSLine } from "react-icons/ri";
 import Loader from "../../../Components/Loader/Loader";
 import TItle from "../../../Components/Title/Title";
 import { useQuery } from "react-query";
@@ -31,7 +32,7 @@ const Products = () => {
   }
 
   return (
-    <div className="py-28 lg:px-12">
+    <div className="lg:px-12">
       <TItle
         title="Our Awesome Products"
         subTitle="What Products we can provide?"
@@ -111,7 +112,7 @@ const Products = () => {
           onClick={() => navigate(`/shop`)}
           className="btn btn-primary text-white"
         >
-          See More
+          See More <RiArrowRightSLine className="font-bold text-xl"/>
         </button>
       </div>
     </div>

@@ -8,7 +8,7 @@ const OrderStep = () => {
         title="Order Step"
         subTitle=" Here is the order step you have to do for get order."
       />
-      <div className="container px-5 py-24 mx-auto flex flex-wrap">
+      <div className="container px-5 mx-auto flex flex-wrap">
         <Fade bottom distance="30px">
           <div className="flex flex-wrap w-full">
             <div className="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">

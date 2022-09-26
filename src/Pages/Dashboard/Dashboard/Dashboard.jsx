@@ -10,15 +10,13 @@ import Loader from "../../../Components/Loader/Loader";
 import useTitle from "../../../Hooks/useTitle";
 import auth from "../../../Firebase/Firebase.config";
 import useAdmin from "../../../Hooks/useAdmin";
-import useProfileImage from "../../../Hooks/useProfileImage";
 import { InitializeContext } from "../../../App";
 
 const Dashboard = () => {
   useTitle("Dashboard");
-  const { handleThemeChange, theme } = useContext(InitializeContext);
+  const { handleThemeChange, theme, image } = useContext(InitializeContext);
   const [user] = useAuthState(auth);
   const [admin, adminLoading] = useAdmin(user);
-  const [image] = useProfileImage();
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
@@ -46,13 +44,19 @@ const Dashboard = () => {
           >
             <BsGrid className={theme ? "text-2xl text-white" : "text-2xl"} />
           </label>
+          <span className="font-semibold text-xl hidden md:block">
+            Welcome back,{" "}
+            <span className="text-primary">
+              {auth?.currentUser?.displayName} 🙂
+            </span>
+          </span>
           <Link
-            to="/"
-            className="text-lg lg:text-2xl md:text-2xl font-semibold"
-          >
-            Gadgets Destination
-          </Link>
-          <div className="lg:mr-[-74rem] pt-2 md:mr-[-14rem] flex justify-center items-center">
+              to="/"
+              className="text-lg lg:text-2xl md:text-2xl font-semibold md:hidden"
+            >
+              Gadgets Destination
+            </Link>
+          <div className="lg:mr-[-67rem] pt-2 md:mr-[-11rem] flex justify-center items-center">
             <li className="list-none">
               <button
                 onClick={handleThemeChange}
@@ -176,9 +180,9 @@ const Dashboard = () => {
               </li>
             </>
           )}
-          <li className="py-1">
-            <NavLink to="/dashboard/management-blog">Blog Management </NavLink>
-          </li>
+          {/* <li className="py-1">
+            <NavLink to="/dashboard/managementBlog">Blog Management </NavLink>
+          </li> */}
           <li className={admin ? "lg:pt-52" : "lg:pt-96"}>
             <button
               onClick={handleLogOut}

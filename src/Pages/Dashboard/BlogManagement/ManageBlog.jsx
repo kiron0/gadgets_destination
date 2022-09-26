@@ -84,7 +84,7 @@ const ManageBlog = () => {
                   <td>
                     <button
                       onClick={() =>
-                        navigate(`/dashboard/management-blog/edit/${blog._id}`)
+                        navigate(`/dashboard/managementBlog/edit/${blog._id}`)
                       }
                       className="btn btn-xs btn-success"
                     >
@@ -109,7 +109,7 @@ const ManageBlog = () => {
               <h2 className="text-2xl font-semibold">No Blog created yet.</h2>
               <Link
                 className="btn btn-primary my-6"
-                to="/dashboard/management-blog/add-blog"
+                to="/dashboard/managementBlog/addBlog"
               >
                 Add Blog
               </Link>

@@ -37,11 +37,15 @@ import EditBlog from "./Pages/Dashboard/BlogManagement/EditBlog";
 import AddBlog from "./Pages/Dashboard/BlogManagement/AddBlog";
 import DeleteTeamMember from "./Pages/Dashboard/DeleteTeamMember/DeleteTeamMember";
 import MembersDetails from "./Pages/Team/MembersDetails";
+import auth from "./Firebase/Firebase.config";
+import { useAuthState } from "react-firebase-hooks/auth";
+import useProfileImage from "./Hooks/useProfileImage";
 export const InitializeContext = createContext(null);
 
 function App() {
+  const [user] = useAuthState(auth);
   const [theme, setTheme] = useState(false);
-
+  const [image] = useProfileImage(user);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -62,7 +66,7 @@ function App() {
 
   return (
     <div data-theme={theme && "night"} className="App">
-      <InitializeContext.Provider value={{ handleThemeChange, theme }}>
+      <InitializeContext.Provider value={{ handleThemeChange, theme, image }}>
         {loading ? (
           <div id="preloader">
             <div id="loader"></div>
@@ -177,9 +181,9 @@ function App() {
                 </RequireAuth>
               }
             ></Route>
-            <Route path="management-blog" element={<BlogManagement />}>
+            <Route path="managementBlog" element={<BlogManagement />}>
               <Route index element={<AddBlog />} />
-              <Route path="add-blog" element={<AddBlog />} />
+              <Route path="addBlog" element={<AddBlog />} />
               <Route path="manageBlogs" element={<ManageBlog />} />
               <Route path="edit/:editId" element={<EditBlog />} />
             </Route>

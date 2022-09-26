@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import useTitle from "../../../hooks/useTitle";
+import useTitle from "../../../Hooks/useTitle";
 
 const BlogManagement = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const BlogManagement = () => {
           <NavLink
             to="/dashboard/management-blog/add-blog"
             className={`btn btn-outline btn-primary  ${
-              path.includes("add-blog") ? "btn-active" : " "
+              path.includes("addBlog") ? "btn-active" : " "
             }`}
           >
             Add Blog

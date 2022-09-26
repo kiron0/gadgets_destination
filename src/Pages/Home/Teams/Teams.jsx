@@ -24,7 +24,7 @@ const Teams = () => {
   }
 
   return (
-    <section className="teams py-20 px-8 sm:px-0">
+    <section className="teams py-24 px-8 sm:px-0">
       <TItle
         title="Our Top Valuable Customers"
         subTitle="These are our top customers of this company."

@@ -7,15 +7,13 @@ import { signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { BiLogInCircle } from "react-icons/bi";
 import auth from "../../Firebase/Firebase.config";
-import useProfileImage from "../../Hooks/useProfileImage";
 import useAdmin from "../../Hooks/useAdmin";
 import { InitializeContext } from "../../App";
 
 const Navbar = () => {
-  const { handleThemeChange, theme } = useContext(InitializeContext);
+  const { handleThemeChange, theme, image } = useContext(InitializeContext);
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
-  const [image] = useProfileImage(user);
   const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState();
 
@@ -27,7 +25,7 @@ const Navbar = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
     toast.success(`Thank you, ${user.displayName} to stay with us!`, {
-      position: "bottom-center",
+      position: "up-center",
       autoClose: 5000,
     });
   };
@@ -74,7 +72,7 @@ const Navbar = () => {
     <div className="sticky top-0 w-full z-50">
       <div
         className={`drawer-content flex flex-col backdrop-blur-[18px] bg-base-300  ${
-          scrollY < 300 && "lg:bg-transparent"
+          scrollY < 300 && "bg-base-300"
         }`}
         style={
           pathname.includes("dashboard")
