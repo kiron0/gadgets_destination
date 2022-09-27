@@ -24,7 +24,7 @@ const Footer = () => {
           <p>
             Gadgets Destination.
             <br />
-            Providing reliable tech since 1992
+            Providing reliable service since 2002
           </p>
           <a
             target="_blank"

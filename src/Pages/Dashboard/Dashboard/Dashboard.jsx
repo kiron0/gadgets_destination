@@ -51,12 +51,12 @@ const Dashboard = () => {
             </span>
           </span>
           <Link
-              to="/"
-              className="text-lg lg:text-2xl md:text-2xl font-semibold md:hidden"
-            >
-              Gadgets Destination
-            </Link>
-          <div className="lg:mr-[-67rem] pt-2 md:mr-[-11rem] flex justify-center items-center">
+            to="/"
+            className="text-lg lg:text-2xl md:text-2xl font-semibold md:hidden"
+          >
+            Gadgets Destination
+          </Link>
+          <div className="lg:mr-[-65rem] pt-2 md:mr-[-11rem] flex justify-center items-center">
             <li className="list-none">
               <button
                 onClick={handleThemeChange}
@@ -183,10 +183,10 @@ const Dashboard = () => {
           {/* <li className="py-1">
             <NavLink to="/dashboard/managementBlog">Blog Management </NavLink>
           </li> */}
-          <li className={admin ? "lg:pt-52" : "lg:pt-96"}>
+          <li className="bottom-4 absolute">
             <button
               onClick={handleLogOut}
-              className="bg-primary rounded-lg text-white"
+              className="bg-primary rounded-lg text-white w-[18rem]"
             >
               <FiLogOut /> Logout
             </button>

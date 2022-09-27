@@ -95,7 +95,7 @@ const AddTeamMember = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""
-        className="shadow rounded bg-base-100 p-5 md:p-10"
+        className="shadow-lg rounded-xl bg-base-100 p-5 md:p-10"
       >
         <div className="my-2">
           <label htmlFor="name" className="my-2">

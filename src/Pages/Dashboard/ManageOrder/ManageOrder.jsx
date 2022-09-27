@@ -31,7 +31,7 @@ const ManageOrder = () => {
           <table className="table w-full">
             <thead>
               <tr>
-                <th></th>
+                <th>No</th>
                 <th>Date</th>
                 <th>Name</th>
                 <th>Email</th>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { AiOutlineFire } from "react-icons/ai";
-import { CgMenuGridO } from "react-icons/cg";
+import { CgMenuLeft } from "react-icons/cg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
@@ -17,9 +17,20 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const [scrollY, setScrollY] = useState();
 
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollY(position);
+  };
+
   useEffect(() => {
-    setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [scrollY]);
+
+  // console.log(scrollY);
 
   const handleLogOut = () => {
     signOut(auth);
@@ -42,11 +53,11 @@ const Navbar = () => {
           Shop
         </NavLink>
       </li>
-      <li className="py-1 lg:py-0">
+      {/* <li className="py-1 lg:py-0">
         <NavLink className="uppercase" to="/blogs">
           Blogs
         </NavLink>
-      </li>
+      </li> */}
       <li className="py-1 lg:py-0">
         <NavLink className="uppercase" to="/teamMembers">
           Team
@@ -71,8 +82,8 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 w-full z-50">
       <div
-        className={`drawer-content flex flex-col backdrop-blur-[18px] bg-base-300  ${
-          scrollY < 300 && "bg-base-300"
+        className={`drawer-content flex flex-col bg-base-300 ${
+          scrollY > 100 && "glass duration-500"
         }`}
         style={
           pathname.includes("dashboard")
@@ -84,7 +95,7 @@ const Navbar = () => {
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex="0" className="btn btn-ghost lg:hidden">
-                <CgMenuGridO className="text-3xl" />
+                <CgMenuLeft className="text-3xl" />
               </label>
               <ul
                 tabIndex="0"
