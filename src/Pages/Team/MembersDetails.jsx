@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import Loading from "../../Components/Loading/Loading";
+import { BASE_API } from "../../config";
 
 const MembersDetails = () => {
   const { membersId } = useParams();
@@ -13,7 +14,7 @@ const MembersDetails = () => {
     "membersDet",
     async () => {
       const res = await fetch(
-        `https://gadgets-destination.herokuapp.com/teamMembers/${membersId}`
+        `${BASE_API}/teamMembers/${membersId}`
       );
       const data = await res.json();
       return data;

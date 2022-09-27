@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import useTitle from "../../../Hooks/useTitle";
 import auth from "../../../Firebase/Firebase.config";
 import Loader from "../../../Components/Loader/Loader";
+import { BASE_API } from "../../../config";
 
 const MyProfile = () => {
   useTitle("Profile");
@@ -58,7 +59,7 @@ const MyProfile = () => {
       createdAt: new Date().toDateString(),
     };
     await fetch(
-      `https://gadgets-destination.herokuapp.com/users?uid=${auth?.currentUser?.uid}`,
+      `${BASE_API}/users?uid=${auth?.currentUser?.uid}`,
       {
         method: "PATCH",
         headers: {
@@ -85,7 +86,7 @@ const MyProfile = () => {
     refetch,
   } = useQuery(["profileData", auth?.currentUser?.uid], () =>
     fetch(
-      `https://gadgets-destination.herokuapp.com/users?uid=${auth?.currentUser?.uid}`,
+      `${BASE_API}/users?uid=${auth?.currentUser?.uid}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

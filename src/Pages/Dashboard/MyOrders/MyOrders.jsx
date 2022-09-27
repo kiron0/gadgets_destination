@@ -5,11 +5,12 @@ import useTitle from "../../../Hooks/useTitle";
 import auth from "../../../Firebase/Firebase.config";
 import Loader from "../../../Components/Loader/Loader";
 import OrderRow from "./OrderRow";
+import { BASE_API } from "../../../config";
 const MyOrders = () => {
   useTitle("My Orders");
   const { data, isLoading, refetch } = useQuery("Orders", () =>
     fetch(
-      `https://gadgets-destination.herokuapp.com/orders?uid=${auth?.currentUser?.uid}`,
+      `${BASE_API}/orders?uid=${auth?.currentUser?.uid}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

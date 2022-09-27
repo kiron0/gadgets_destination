@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import TItle from "../../../Components/Title/Title";
 import CardReview from "./CardReview";
 import Loader from "../../../Components/Loader/Loader";
+import { BASE_API } from "../../../config";
 const Reviews = () => {
   var settings = {
     dots: true,
@@ -44,7 +45,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    fetch(`https://gadgets-destination.herokuapp.com/reviews`, {
+    fetch(`${BASE_API}/reviews`, {
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

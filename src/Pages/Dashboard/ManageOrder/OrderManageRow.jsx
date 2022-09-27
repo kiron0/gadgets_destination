@@ -2,6 +2,7 @@ import React from "react";
 import { BsCalendarDate } from "react-icons/bs";
 import { FiDelete } from "react-icons/fi";
 import Swal from "sweetalert2";
+import { BASE_API } from "../../../config";
 
 const OrderManageRow = ({
   author,
@@ -28,7 +29,7 @@ const OrderManageRow = ({
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://gadgets-destination.herokuapp.com/orders/shipped/${id}`,
+          `${BASE_API}/orders/shipped/${id}`,
           {
             method: "PATCH",
             headers: {
@@ -61,7 +62,7 @@ const OrderManageRow = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://gadgets-destination.herokuapp.com/orders/${id}`, {
+        fetch(`${BASE_API}/orders/${id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
 import useTitle from "../../../Hooks/useTitle";
 import auth from "../../../Firebase/Firebase.config";
+import { BASE_API } from "../../../config";
 
 const PaymentHistory = () => {
   useTitle("Payment History");
@@ -9,7 +10,7 @@ const PaymentHistory = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     fetch(
-      `https://gadgets-destination.herokuapp.com/payment/history?uid=${auth?.currentUser?.uid}`,
+      `${BASE_API}/payment/history?uid=${auth?.currentUser?.uid}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

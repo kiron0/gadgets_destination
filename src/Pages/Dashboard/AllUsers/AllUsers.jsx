@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import useTitle from "../../../Hooks/useTitle";
 import Loading from "../../../Components/Loading/Loading";
 import UserRow from "./UserRow";
+import { BASE_API } from "../../../config";
 
 const AllUsers = () => {
   useTitle("Manage All Users");
@@ -11,7 +12,7 @@ const AllUsers = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://gadgets-destination.herokuapp.com/users/all", {
+    fetch(`${BASE_API}/users/all`, {
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

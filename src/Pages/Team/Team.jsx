@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import useTitle from "../../Hooks/useTitle";
 import TeamCard from "./TeamCard";
 import Loading from "../../Components/Loading/Loading";
+import { BASE_API } from "../../config";
 
 const Team = () => {
   useTitle("Team");
@@ -13,7 +14,7 @@ const Team = () => {
     refetch,
   } = useQuery("teamMembers", async () => {
     const res = await fetch(
-      "https://gadgets-destination.herokuapp.com/teamMembers"
+      `${BASE_API}/teamMembers`
     );
     const data = await res.json();
     return data;

@@ -9,6 +9,7 @@ import auth from "../../../Firebase/Firebase.config";
 import Loader from "../../../Components/Loader/Loader";
 
 import CheckoutForm from "./CheckoutForm";
+import { BASE_API } from "../../../config";
 const stripePromise = loadStripe(
   "pk_test_51JQc40Cqn9XOgqTm7I8yc2xHS4lhFQpzsrqm5Z68LqNBfHMED6oN4HWhbRSyR2aQIiOBTdRkBXBocvhtt0dFdK9W00C3TParQx"
 );
@@ -18,7 +19,7 @@ const Payment = () => {
   const navigate = useNavigate();
   const { data, isLoading, refetch } = useQuery("Orders", () =>
     fetch(
-      `https://gadgets-destination.herokuapp.com/orders?uid=${auth?.currentUser?.uid}`,
+      `${BASE_API}/orders?uid=${auth?.currentUser?.uid}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

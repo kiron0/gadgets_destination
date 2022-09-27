@@ -4,11 +4,12 @@ import { useQuery } from "react-query";
 import useTitle from "../../../Hooks/useTitle";
 import Loader from "../../../Components/Loader/Loader";
 import ProductsRow from "./ProductsRow";
+import { BASE_API } from "../../../config";
 const ManageProducts = () => {
   useTitle("Manage Product");
   const [modalProduct, setModalProduct] = useState({});
   const { data, isLoading, refetch } = useQuery(["products"], () =>
-    fetch(`https://gadgets-destination.herokuapp.com/products`, {
+    fetch(`${BASE_API}/products`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -32,7 +33,7 @@ const ManageProducts = () => {
     }
 
     await fetch(
-      `https://gadgets-destination.herokuapp.com/products/update-stock/${modalProduct._id}`,
+      `${BASE_API}/products/update-stock/${modalProduct._id}`,
       {
         method: "PATCH",
         headers: {

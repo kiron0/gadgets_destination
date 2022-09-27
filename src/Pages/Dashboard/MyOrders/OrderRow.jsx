@@ -2,6 +2,7 @@ import React from "react";
 import { FiDelete } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { BASE_API } from "../../../config";
 
 const OrderRow = ({
   productInfo,
@@ -27,7 +28,7 @@ const OrderRow = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://gadgets-destination.herokuapp.com/orders/${id}`, {
+        fetch(`${BASE_API}/orders/${id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,

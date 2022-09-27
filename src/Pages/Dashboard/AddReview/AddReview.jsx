@@ -5,6 +5,7 @@ import ReactStars from "react-stars";
 import useProfileImage from "../../../Hooks/useProfileImage";
 import useTitle from "../../../Hooks/useTitle";
 import auth from "../../../Firebase/Firebase.config";
+import { BASE_API } from "../../../config";
 const AddReview = () => {
   useTitle("Add Review");
   const [rating, setRating] = useState(0);
@@ -25,7 +26,7 @@ const AddReview = () => {
       },
     };
     if (rating && reviewText) {
-      await fetch(`https://gadgets-destination.herokuapp.com/reviews`, {
+      await fetch(`${BASE_API}/reviews`, {
         method: "POST",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

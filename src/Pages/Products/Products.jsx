@@ -7,6 +7,7 @@ import useTitle from "../../Hooks/useTitle";
 import Loader from "../../Components/Loader/Loader";
 import Product from "./Product";
 import useProduct from "../../Hooks/useProducts";
+import { BASE_API } from "../../config";
 
 const Products = () => {
   useTitle("Shop");
@@ -17,7 +18,7 @@ const Products = () => {
     const searchText = event.target.search.value;
     if (!searchText) return toast.error(`Search field is required.`);
     await fetch(
-      `https://gadgets-destination.herokuapp.com/products/search?q=${searchText}`
+      `${BASE_API}/products/search?q=${searchText}`
     )
       .then((res) => res.json())
       .then((result) => {

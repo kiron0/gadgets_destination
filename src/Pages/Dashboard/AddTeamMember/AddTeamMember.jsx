@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useTitle from "../../../Hooks/useTitle";
 import { toast } from "react-hot-toast";
 import auth from "../../../Firebase/Firebase.config";
+import { BASE_API } from "../../../config";
 
 const AddTeamMember = () => {
   useTitle("Add Team Member");
@@ -72,7 +73,7 @@ const AddTeamMember = () => {
       },
     };
 
-    await fetch(`https://gadgets-destination.herokuapp.com/teamMembers`, {
+    await fetch(`${BASE_API}/teamMembers`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

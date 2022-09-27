@@ -1,5 +1,6 @@
 import React from "react";
 import Swal from "sweetalert2";
+import { BASE_API } from "../../../config";
 
 const TeamCard = ({
   _id,
@@ -20,7 +21,7 @@ const TeamCard = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://gadgets-destination.herokuapp.com/teamMembers/${_id}`, {
+        fetch(`${BASE_API}/teamMembers/${_id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,

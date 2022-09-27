@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useTitle from "../../../Hooks/useTitle";
 import auth from "../../../Firebase/Firebase.config";
+import { BASE_API } from "../../../config";
 
 const AddProduct = () => {
   useTitle("Add Product");
@@ -59,7 +60,7 @@ const AddProduct = () => {
       },
     };
 
-    await fetch(`https://gadgets-destination.herokuapp.com/products`, {
+    await fetch(`${BASE_API}/products`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

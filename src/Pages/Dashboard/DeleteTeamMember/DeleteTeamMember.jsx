@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import Loader from "../../../Components/Loader/Loader";
 import Fade from "react-reveal/Fade";
 import TeamCard from "./TeamCard";
+import { BASE_API } from "../../../config";
 
 const DeleteTeamMember = () => {
   const {
@@ -10,7 +11,7 @@ const DeleteTeamMember = () => {
     isLoading,
     refetch,
   } = useQuery(["teamMembers"], () =>
-    fetch(`https://gadgets-destination.herokuapp.com/teamMembers`, {
+    fetch(`${BASE_API}/teamMembers`, {
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

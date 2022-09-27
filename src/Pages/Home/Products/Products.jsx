@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../Firebase/Firebase.config";
 import useAdmin from "../../../Hooks/useAdmin";
+import { BASE_API } from "../../../config";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Products = () => {
 
   const { data: products, isLoading } = useQuery("allProducts", async () => {
     const res = await fetch(
-      "https://gadgets-destination.herokuapp.com/products?sort=1",
+      `${BASE_API}/products?sort=1`,
       {
         headers: {
           "content-type": "application/json",
