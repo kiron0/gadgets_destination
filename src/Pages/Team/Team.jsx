@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import useTitle from "../../Hooks/useTitle";
 import TeamCard from "./TeamCard";
-import Loading from "../../Components/Loading/Loading";
+import Loader from "../../Components/Loader/Loader";
 import { BASE_API } from "../../config";
 
 const Team = () => {
@@ -24,12 +24,12 @@ const Team = () => {
     teamMembers?.length === undefined ||
     teamMembers.length === 0
   ) {
-    return <Loading />;
+    return <Loader />;
   }
 
   return (
     <div className="h-screen bg-base-100">
-      <div className="breadcrumb text-center py-24 bg-base-300">
+      <div className="breadcrumb text-center py-24 pt-36 bg-base-300">
         <h2 className="text-3xl">Team Page</h2>
         <div className="text-md breadcrumbs ">
           <ul className="justify-center">

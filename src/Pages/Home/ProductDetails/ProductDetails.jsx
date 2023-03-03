@@ -78,33 +78,27 @@ const ProductDetails = () => {
   };
 
   const sendOrderData = async (data) => {
-    await fetch(
-      `${BASE_API}/orders?uid=${auth?.currentUser?.uid}`,
-      {
-        method: "POST",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          "content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
+    await fetch(`${BASE_API}/orders?uid=${auth?.currentUser?.uid}`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
       .then((res) => res.json())
       .then((result) => {
         if (result?.order) {
-          fetch(
-            `${BASE_API}/products/updateQty/${id}`,
-            {
-              method: "PATCH",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify({
-                availableQty:
-                  Number(availableQty) - Number(orderQtyField || orderQty),
-              }),
-            }
-          )
+          fetch(`${BASE_API}/products/updateQty/${id}`, {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              availableQty:
+                Number(availableQty) - Number(orderQtyField || orderQty),
+            }),
+          })
             .then((res) => res.json())
             .then((result) => {
               if (result?.modifiedCount) {
@@ -147,7 +141,7 @@ const ProductDetails = () => {
               <h3 className="text-2xl">{productName}</h3>
             </div>
             <img
-              src={image}
+              src={data?.image}
               alt={productName}
               className="w-full h-80 object-contain rounded-xl"
             />

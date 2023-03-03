@@ -14,15 +14,15 @@ const Home = () => {
   useTitle("Home");
   return (
     <>
-      <Banner></Banner>
-      <Hero></Hero>
-      <Products></Products>
-      <Teams></Teams>
-      <Reviews></Reviews>
-      <OrderStep></OrderStep>
-      <Stats></Stats>
-      <GetInTouch></GetInTouch>
-      <Footer></Footer>
+      <Banner />
+      <Hero />
+      <Products />
+      <Teams />
+      <Reviews />
+      <OrderStep />
+      <Stats />
+      <GetInTouch />
+      <Footer />
     </>
   );
 };

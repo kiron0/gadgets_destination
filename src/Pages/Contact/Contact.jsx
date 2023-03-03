@@ -20,8 +20,8 @@ const Contact = () => {
   };
   return (
     <section className="contact">
-      <div className="breadcrumb text-center py-20 bg-base-300">
-        <h2 className="text-3xl">Contact Page</h2>
+      <div className="breadcrumb text-center py-24 pt-36 bg-base-300">
+        <h2 className="text-3xl">Contact</h2>
         <div className="text-md breadcrumbs ">
           <ul className="justify-center">
             <li>

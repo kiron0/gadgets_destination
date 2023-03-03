@@ -17,9 +17,7 @@ const Products = () => {
     event.preventDefault();
     const searchText = event.target.search.value;
     if (!searchText) return toast.error(`Search field is required.`);
-    await fetch(
-      `${BASE_API}/products/search?q=${searchText}`
-    )
+    await fetch(`${BASE_API}/products/search?q=${searchText}`)
       .then((res) => res.json())
       .then((result) => {
         setProducts(result);
@@ -58,10 +56,10 @@ const Products = () => {
         </div>
       </div>
       <Fade bottom distance="30px">
-        <div className="container mx-auto py-20 px-6">
+        <div className="container mx-auto py-20 px-3 md:px-0">
           {loading || searchLoading ? (
             products?.length > 0 ? (
-              <div className="shop-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {products?.map((product) => (
                   <Product key={product._id} product={product} />
                 ))}

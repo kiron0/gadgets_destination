@@ -30,8 +30,6 @@ const Navbar = () => {
     };
   }, [scrollY]);
 
-  // console.log(scrollY);
-
   const handleLogOut = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
@@ -77,7 +75,7 @@ const Navbar = () => {
         </li>
       )}
       {!user && (
-        <li className="py-1 lg:py-0" onClick={handleThemeChange}>
+        <li className="py-1 lg:py-0 lg:hidden flex" onClick={handleThemeChange}>
           {theme ? <span>Light Mode</span> : <span>Dark Mode</span>}
         </li>
       )}
@@ -130,7 +128,7 @@ const Navbar = () => {
             {!user && (
               <NavLink
                 to="/login"
-                className="btn flex gap-2 items-center btn-primary"
+                className="btn flex gap-2 text-white items-center btn-primary"
               >
                 <BiLogInCircle /> Login
               </NavLink>

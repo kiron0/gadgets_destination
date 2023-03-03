@@ -22,7 +22,7 @@ const Product = ({ product }) => {
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
-        <img src={image} className="h-52 rounded-xl" alt="Shoes" />
+        <img src={image} className="w-full h-60 rounded-xl" alt={productName} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{productName}</h2>
@@ -59,7 +59,7 @@ const Product = ({ product }) => {
           ) : (
             <button
               onClick={() => navigate(`/purchase/${_id}`)}
-              className="btn btn-primary text-white mt-4"
+              className="btn btn-sm btn-primary text-white mt-4"
             >
               Order Now
             </button>
