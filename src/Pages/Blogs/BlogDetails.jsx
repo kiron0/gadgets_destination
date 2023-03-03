@@ -10,28 +10,26 @@ const BlogDetails = () => {
   const navigate = useNavigate();
 
   const { data: blog, isLoading } = useQuery("blog", async () => {
-    const res = await fetch(
-      `${BASE_API}/blogs/${id}`
-    );
+    const res = await fetch(`${BASE_API}/blogs/${id}`);
     const data = await res.json();
     return data;
   });
 
   if (isLoading || !blog) {
-    return <Loader></Loader>;
+    return <Loader />;
   }
   return (
-    <div className="blog-details py-28 h-screen">
-      <div className="container mx-auto shadow-md rounded">
+    <div className="blog-details md:py-28 h-screen">
+      <div className="container mx-auto md:shadow-md rounded">
         <div className="card p-4 md:p-10">
           <div className="card-body">
             <div className="title flex items-center gap-3 my-3">
               <MdArrowBackIos
                 onClick={() => navigate(-1)}
-                className="cursor-pointer text-3xl md:text-sm lg:text-lg"
+                className="cursor-pointer"
               />
               <h2 className="text-md lg:text-2xl font-semibold text-slate-500">
-                {blog?.title}
+                {blog?.title.slice(0, 30)}
               </h2>
             </div>
             <ul className="meta flex items-center gap-4 my-2 flex-wrap">

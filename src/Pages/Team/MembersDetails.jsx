@@ -1,5 +1,4 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
@@ -9,21 +8,23 @@ import { BASE_API } from "../../config";
 const MembersDetails = () => {
   const { membersId } = useParams();
   const navigate = useNavigate();
+  const [teamDetails, setTeamDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { data: membersDetails, isLoading } = useQuery(
-    "membersDet",
-    async () => {
-      const res = await fetch(
-        `${BASE_API}/teamMembers/${membersId}`
-      );
-      const data = await res.json();
-      return data;
-    }
-  );
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetch(`${BASE_API}/teamMembers/${membersId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTeamDetails(data);
+        setIsLoading(false);
+      });
+  }, [membersId]);
 
   return (
     <>
-      {isLoading || !membersDetails || !membersDetails?.image2 ? (
+      {isLoading || !teamDetails || !teamDetails?.image2 ? (
         <Loading />
       ) : (
         <div className="py-10 md:py-24 lg:py-30 px-3 lg:px-0 md:w-[500px] lg:w-[500px] mx-auto">
@@ -37,28 +38,28 @@ const MembersDetails = () => {
               </label>
               <img
                 className="flex mx-auto my-6 lg:my-12 w-52 lg:w-64 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
-                src={membersDetails?.image2}
+                src={teamDetails?.image2}
                 alt=""
               />
               <h3 className="text-lg font-semibold text-center flex items-center justify-center gap-1">
-                {membersDetails?.membersName}
+                {teamDetails?.membersName}
                 <div className="badge badge-dark text-white">
-                  {membersDetails?.position}
+                  {teamDetails?.position}
                 </div>
               </h3>
-              <p className="text-center">{membersDetails?.education}</p>
+              <p className="text-center">{teamDetails?.education}</p>
               <p className="text-center">5th Semester (2019-2020)</p>
-              <p className="text-center">{membersDetails?.title}</p>
+              <p className="text-center">{teamDetails?.title}</p>
               <p className="text-center py-4">
-                {membersDetails?.aboutYourself?.slice(0, 190)}...
+                {teamDetails?.aboutYourself?.slice(0, 190)}...
               </p>
               <div className="card-actions">
                 <div className="flex items-center mx-auto gap-2 py-2">
                   <button className="btn btn-square btn-sm text-white">
                     <a
                       href={
-                        membersDetails?.facebookUrl
-                          ? membersDetails?.facebookUrl
+                        teamDetails?.facebookUrl
+                          ? teamDetails?.facebookUrl
                           : "https://www.facebook.com/"
                       }
                       target="_blank"
@@ -70,8 +71,8 @@ const MembersDetails = () => {
                   <button className="btn btn-square btn-sm text-white">
                     <a
                       href={
-                        membersDetails?.instagramUrl
-                          ? membersDetails?.instagramUrl
+                        teamDetails?.instagramUrl
+                          ? teamDetails?.instagramUrl
                           : "https://instagram.com"
                       }
                       target="_blank"
@@ -83,8 +84,8 @@ const MembersDetails = () => {
                   <button className="btn btn-square btn-sm text-white">
                     <a
                       href={
-                        membersDetails?.githubUrl
-                          ? membersDetails?.githubUrl
+                        teamDetails?.githubUrl
+                          ? teamDetails?.githubUrl
                           : "https://github.com"
                       }
                       target="_blank"
